@@ -46,7 +46,7 @@ public final class ComplexNumber {
         double c = other.real;
         double d = other.imaginary;
         if (c == 0.0 && d == 0.0) {
-            throw new ArithmeticException("Нельзя делить на нулевое комплексное число");
+            throw new ArithmeticException("Cannot divide by zero");
         }
 
         double resultReal;

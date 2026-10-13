@@ -11,7 +11,7 @@ public final class ComplexMatrix {
 
     public ComplexMatrix(int rows, int cols) {
         if (rows <= 0 || cols <= 0) {
-            throw new IllegalArgumentException("Размеры матрицы должны быть положительными");
+            throw new IllegalArgumentException("Matrix dimensions must be positive");
         }
 
         this.rows = rows;
@@ -44,7 +44,7 @@ public final class ComplexMatrix {
     }
 
     public ComplexMatrix add(ComplexMatrix other) {
-        requireSameDimensions(other, "сложения");
+        requireSameDimensions(other, "addition");
         ComplexMatrix result = new ComplexMatrix(rows, cols);
 
         for (int row = 0; row < rows; row++) {
@@ -56,7 +56,7 @@ public final class ComplexMatrix {
     }
 
     public ComplexMatrix subtract(ComplexMatrix other) {
-        requireSameDimensions(other, "вычитания");
+        requireSameDimensions(other, "subtraction");
         ComplexMatrix result = new ComplexMatrix(rows, cols);
 
         for (int row = 0; row < rows; row++) {
@@ -71,7 +71,7 @@ public final class ComplexMatrix {
         Objects.requireNonNull(other, "other must not be null");
         if (cols != other.rows) {
             throw new IllegalArgumentException(
-                    "Для умножения число столбцов первой матрицы должно равняться числу строк второй"
+                    "The number of columns in the first matrix must equal the number of rows in the second matrix"
             );
         }
 
@@ -149,7 +149,7 @@ public final class ComplexMatrix {
             ComplexNumber pivot = left[pivotRow][pivotIndex];
 
             if (isNumericallyZero(pivot, left[pivotRow])) {
-                throw new ArithmeticException("Матрица вырождена или численно близка к вырожденной");
+                throw new ArithmeticException("The matrix is singular or numerically close to singular");
             }
 
             if (pivotRow != pivotIndex) {
@@ -195,20 +195,20 @@ public final class ComplexMatrix {
         Objects.requireNonNull(other, "other must not be null");
         if (rows != other.rows || cols != other.cols) {
             throw new IllegalArgumentException(
-                    "Для " + operation + " матрицы должны иметь одинаковые размеры"
+                    "Matrices must have the same dimensions for " + operation
             );
         }
     }
 
     private void requireSquare() {
         if (rows != cols) {
-            throw new IllegalArgumentException("Операция определена только для квадратной матрицы");
+            throw new IllegalArgumentException("This operation is defined only for square matrices");
         }
     }
 
     private void checkIndex(int row, int col) {
         if (row < 0 || row >= rows || col < 0 || col >= cols) {
-            throw new IndexOutOfBoundsException("Индекс элемента матрицы вне допустимых границ");
+            throw new IndexOutOfBoundsException("Matrix element index is out of bounds");
         }
     }
 
